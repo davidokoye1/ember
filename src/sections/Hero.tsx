@@ -25,7 +25,7 @@ export default function Hero() {
       {/* Wordmark */}
       <div className="overflow-hidden px-[1.5vw]">
         <motion.h1
-          initial={{ y: '100%' }}
+          initial={reduceMotion ? false : { y: '100%' }}
           animate={{ y: 0 }}
           transition={{ duration: 1, ease: EASE }}
           className="display w-full whitespace-nowrap text-center text-[20vw] text-ink select-none"

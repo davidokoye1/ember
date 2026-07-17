@@ -4,7 +4,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-/* Words rise from behind per-word clip masks. Unlike WordsPullUp this accepts
+/* Words rise from behind per-word clip masks. Accepts
    styled children — two-tone spans, inline AsteriskMarks, <br/> — and splits
    only the text nodes, preserving every wrapper. Whitespace renders outside
    the masks so line wrapping matches unanimated text. */

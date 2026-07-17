@@ -74,7 +74,7 @@ export default function Voices() {
                     as="p"
                     className="text-2xl sm:text-3xl md:text-[2.45vw] font-semibold leading-[1.18] tracking-[-0.02em]"
                   >
-                    <span className="text-ink">“{voice.lede}</span>{' '}
+                    <span className="text-ink">{`“${voice.lede}`}</span>{' '}
                     <span className="text-ink/45">{`${voice.rest}”`}</span>
                   </AnimatedWords>
                   <Reveal delay={0.2}>
