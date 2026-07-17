@@ -1,100 +1,96 @@
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import WordsPullUp from '../components/WordsPullUp'
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { ArrowDown } from 'lucide-react'
 import heroImg from '../assets/hero.png'
+import AnimatedWords from '../components/AnimatedWords'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const NAV_LINKS = ['Our story', 'Roasts', 'Origins', 'Subscriptions', 'Wholesale']
-
-const DESCRIPTION =
-  'Ember is a small-batch specialty roastery. We source single-origin lots from growers we know by name, roast them in small batches to order, and ship within days — so every cup tastes the way the farm intended.'
-
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
+
+  /* Scroll choreography: as the hero leaves, the wordmark sinks slower than
+     the page (depth) and the photograph pans inside its crop. */
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  })
+  const markY = useTransform(scrollYProgress, [0, 1], ['0%', '32%'])
+  const markOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.25])
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%'])
+
   return (
-    <section className="relative h-screen p-4 md:p-6">
-      <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
-        {/* Ken-Burns background */}
+    <header ref={ref} className="flex min-h-[calc(100vh-3rem)] flex-col">
+      {/* Wordmark */}
+      <div className="overflow-hidden px-[1.5vw]">
+        <motion.h1
+          initial={{ y: '100%' }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1, ease: EASE }}
+          className="display w-full whitespace-nowrap text-center text-[20vw] text-ink select-none"
+        >
+          <motion.span
+            className="inline-block will-change-transform"
+            style={reduceMotion ? undefined : { y: markY, opacity: markOpacity }}
+          >
+            Ember<span className="text-ember">*</span>
+          </motion.span>
+        </motion.h1>
+      </div>
+
+      {/* Meta rule row */}
+      <div className="grid grid-cols-2 md:grid-cols-3 items-center border-y border-ink px-4 py-2.5 md:px-8 text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em]">
+        <span>Small-batch roastery</span>
+        <span className="hidden md:block text-center">Roasted weekly — shipped in 48h</span>
+        <span className="text-right">Portland, OR — est. 2019</span>
+      </div>
+
+      {/* Statement row */}
+      <div className="grid grid-cols-12 gap-x-4 px-4 py-8 md:px-8 md:py-10 items-start">
+        <AnimatedWords
+          as="p"
+          delay={0.35}
+          className="col-span-12 md:col-span-7 max-w-2xl text-xl md:text-3xl font-semibold leading-[1.22] tracking-[-0.02em]"
+        >
+          <span className="text-ink">
+            We source single-origin lots from growers we know by name, roast them in small batches
+            to order,
+          </span>{' '}
+          <span className="text-ink/45">
+            and ship within days — so every cup tastes the way the farm intended.
+          </span>
+        </AnimatedWords>
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
+          className="col-span-12 md:col-span-3 md:col-start-10 mt-6 md:mt-0 flex md:justify-end"
+        >
+          <a
+            href="#roasts"
+            className="group inline-flex items-center gap-2 bg-ember px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-paper hover:bg-ink transition-colors"
+          >
+            Taste the roast
+            <ArrowDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Photography band — pans inside its crop as you scroll past */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 1, ease: EASE }}
+        className="relative flex-1 min-h-[38vh] overflow-hidden"
+      >
         <motion.img
           src={heroImg}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover will-change-transform"
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.08 }}
-          transition={{ duration: 22, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+          alt="Our drum roaster mid-roast, beans turning in the cooling tray"
+          className="absolute left-0 top-[-14%] h-[128%] w-full object-cover will-change-transform"
+          style={reduceMotion ? undefined : { y: imgY }}
         />
-
-        {/* Noise overlay */}
-        <div className="noise-overlay absolute inset-0 opacity-[0.7] mix-blend-overlay pointer-events-none" />
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 pointer-events-none" />
-
-        {/* Navbar */}
-        <nav className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-          <div className="bg-black rounded-b-2xl md:rounded-b-3xl px-4 py-2 md:px-8 flex items-center gap-3 sm:gap-6 md:gap-12 lg:gap-14">
-            <a href="#" aria-label="Ember" className="shrink-0">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                stroke="#D97B4A"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              >
-                <line x1="12" y1="3" x2="12" y2="21" />
-                <line x1="4.2" y1="7.5" x2="19.8" y2="16.5" />
-                <line x1="4.2" y1="16.5" x2="19.8" y2="7.5" />
-              </svg>
-            </a>
-            {NAV_LINKS.map((label) => (
-              <a
-                key={label}
-                href="#"
-                className="text-[10px] sm:text-xs md:text-sm whitespace-nowrap text-[rgba(233,216,190,0.8)] hover:text-[#E9D8BE] transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </nav>
-
-        {/* Bottom-aligned hero content */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-2 sm:px-6 sm:pb-4 md:px-10 md:pb-6">
-          <div className="grid grid-cols-12 gap-x-4 gap-y-6 items-end">
-            <div className="col-span-12 md:col-span-8" style={{ color: '#E9D8BE' }}>
-              <WordsPullUp
-                text="Ember"
-                showAsterisk
-                className="text-[26vw] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw] font-medium leading-[0.85] tracking-[-0.07em]"
-              />
-            </div>
-            <div className="col-span-12 md:col-span-4 flex flex-col items-start gap-5 md:gap-6 md:pb-[2vw] md:pl-4">
-              <motion.p
-                className="text-primary/70 text-xs sm:text-sm md:text-base leading-[1.2]"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8, ease: EASE }}
-              >
-                {DESCRIPTION}
-              </motion.p>
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.8, ease: EASE }}
-              >
-                <button className="group flex items-center gap-2 hover:gap-3 bg-primary text-black font-medium text-sm sm:text-base rounded-full pl-5 sm:pl-6 pr-1.5 py-1.5 transition-all duration-300">
-                  Taste the roast
-                  <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#E9D8BE' }} />
-                  </span>
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </motion.div>
+    </header>
   )
 }
