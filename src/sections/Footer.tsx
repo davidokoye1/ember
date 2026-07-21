@@ -4,16 +4,18 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { Instagram, ArrowRight, Check } from 'lucide-react'
 import AsteriskMark from '../components/AsteriskMark'
 import AnimatedWords from '../components/AnimatedWords'
+import { Link } from '../router'
 
 const LINKS = [
-  { label: 'Our story', href: '#our-story' },
-  { label: 'Origins', href: '#origins' },
-  { label: 'Process', href: '#process' },
-  { label: 'Roasts', href: '#roasts' },
-  { label: 'Voices', href: '#voices' },
-  { label: 'Subscriptions', href: '#subscriptions' },
-  { label: 'Wholesale', href: '#wholesale' },
-  { label: 'The fine print', href: '#fine-print' },
+  { label: 'Our story', href: '/#our-story' },
+  { label: 'Origins', href: '/#origins' },
+  { label: 'Process', href: '/#process' },
+  { label: 'Roasts', href: '/#roasts' },
+  { label: 'Brew guides', href: '/brew-guides' },
+  { label: 'Visit the roastery', href: '/visit' },
+  { label: 'Subscriptions', href: '/#subscriptions' },
+  { label: 'Wholesale', href: '/#wholesale' },
+  { label: 'The fine print', href: '/#fine-print' },
 ]
 
 export default function Footer() {
@@ -105,13 +107,13 @@ export default function Footer() {
             Menu
           </span>
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.href}
               className="text-sm text-ink/70 hover:text-ember transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

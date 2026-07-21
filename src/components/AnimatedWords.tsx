@@ -11,7 +11,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 interface AnimatedWordsProps {
   children: ReactNode
-  as?: 'div' | 'p' | 'h2' | 'h3' | 'span'
+  as?: 'div' | 'p' | 'h1' | 'h2' | 'h3' | 'span'
   className?: string
   delay?: number
   stagger?: number

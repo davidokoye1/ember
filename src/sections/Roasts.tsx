@@ -3,53 +3,13 @@ import AnimatedWords from '../components/AnimatedWords'
 import AsteriskMark from '../components/AsteriskMark'
 import Eyebrow from '../components/Eyebrow'
 import Reveal from '../components/Reveal'
-import bagDawn from '../assets/bag-dawn.png'
-import bagEmber from '../assets/bag-ember.png'
-import bagChar from '../assets/bag-char.png'
-
-const ROASTS = [
-  {
-    name: 'Dawn',
-    level: 'Light',
-    dropTemp: '196°',
-    notes: 'Bergamot / apricot / black tea',
-    lots: 'Ethiopia + Kenya',
-    process: 'Washed',
-    weight: '250 g',
-    price: '$19.00',
-    img: bagDawn,
-    alt: 'Dawn light roast in a kraft-paper bag',
-  },
-  {
-    name: 'Ember',
-    level: 'Medium',
-    dropTemp: '210°',
-    notes: 'Panela / hazelnut / orange zest',
-    lots: 'Colombia + Guatemala',
-    process: 'Washed + honey',
-    weight: '250 g',
-    price: '$18.00',
-    img: bagEmber,
-    alt: 'Ember medium roast in a chestnut-brown bag',
-  },
-  {
-    name: 'Char',
-    level: 'Dark',
-    dropTemp: '224°',
-    notes: 'Dark chocolate / molasses / smoke',
-    lots: 'Guatemala + Colombia',
-    process: 'Natural',
-    weight: '250 g',
-    price: '$18.00',
-    img: bagChar,
-    alt: 'Char dark roast in a matte-black bag',
-  },
-]
+import { ROASTS } from '../data/roasts'
+import { Link } from '../router'
 
 function RoastCard({ roast }: { roast: (typeof ROASTS)[number] }) {
   return (
-    <a
-      href="#subscriptions"
+    <Link
+      to={`/roasts/${roast.slug}`}
       className="group relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-ember"
     >
       <div className="relative aspect-[3/4] overflow-hidden">
@@ -61,14 +21,14 @@ function RoastCard({ roast }: { roast: (typeof ROASTS)[number] }) {
         {/* Bottom overlay */}
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 pt-20">
           <div className="flex flex-col gap-1">
-            <span className="display text-3xl md:text-4xl text-paper">
+            <span className="display text-3xl md:text-4xl text-white">
               {roast.name}
               <span className="text-ember">*</span>
             </span>
-            <span className="text-xs font-semibold tracking-[0.04em] text-paper">
+            <span className="text-xs font-semibold tracking-[0.04em] text-white">
               {roast.notes}
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-paper/85">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/85">
               {roast.level} roast — {roast.dropTemp} — {roast.lots} — {roast.process}
             </span>
           </div>
@@ -82,7 +42,7 @@ function RoastCard({ roast }: { roast: (typeof ROASTS)[number] }) {
         </span>
         <ArrowUpRight className="h-3.5 w-3.5 text-paper transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ember" />
       </div>
-    </a>
+    </Link>
   )
 }
 
