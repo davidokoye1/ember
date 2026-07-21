@@ -4,10 +4,10 @@ import { ArrowUpRight } from 'lucide-react'
 import AnimatedWords from '../components/AnimatedWords'
 import AsteriskMark from '../components/AsteriskMark'
 import Eyebrow from '../components/Eyebrow'
-import ethiopiaImg from '../assets/origin-ethiopia.png'
-import colombiaImg from '../assets/origin-colombia.png'
-import guatemalaImg from '../assets/origin-guatemala.png'
-import kenyaImg from '../assets/origin-kenya.png'
+import ethiopiaImg from '../assets/origin-ethiopia.webp'
+import colombiaImg from '../assets/origin-colombia.webp'
+import guatemalaImg from '../assets/origin-guatemala.webp'
+import kenyaImg from '../assets/origin-kenya.webp'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -123,7 +123,7 @@ export default function Origins() {
                         transition={{ duration: 0.5, ease: EASE }}
                         className="overflow-hidden md:hidden"
                       >
-                        <img src={origin.img} alt={origin.alt} className="h-56 w-full object-cover" />
+                        <img src={origin.img} alt={origin.alt} className="h-56 w-full object-cover" loading="lazy" decoding="async" />
                         <p className="border-t border-ink px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/60">
                           {origin.region} — {origin.altitude} — {origin.notes}
                         </p>
@@ -144,6 +144,8 @@ export default function Origins() {
                 key={ORIGINS[active].name}
                 src={ORIGINS[active].img}
                 alt={ORIGINS[active].alt}
+                loading="lazy"
+                decoding="async"
                 initial={{ opacity: 0, scale: 1.06 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}

@@ -3,7 +3,7 @@ import AnimatedWords from '../components/AnimatedWords'
 import AsteriskMark from '../components/AsteriskMark'
 import Eyebrow from '../components/Eyebrow'
 import Reveal from '../components/Reveal'
-import storyImg from '../assets/story-roastery.png'
+import storyImg from '../assets/story-roastery.webp'
 
 export default function Story() {
   return (
@@ -52,6 +52,8 @@ export default function Story() {
                 src={storyImg}
                 alt="Our drum roaster at dusk, surrounded by burlap sacks of green coffee"
                 className="aspect-square w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <figcaption className="mt-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/50">
                 <AsteriskMark className="h-2.5 w-2.5 text-ember" />

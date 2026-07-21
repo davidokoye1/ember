@@ -2,8 +2,8 @@ import AsteriskMark from '../components/AsteriskMark'
 import AnimatedWords from '../components/AnimatedWords'
 import Eyebrow from '../components/Eyebrow'
 import Reveal from '../components/Reveal'
-import voicesStamp from '../assets/voices-stamp.png'
-import voicesCafe from '../assets/voices-cafe.png'
+import voicesStamp from '../assets/voices-stamp.webp'
+import voicesCafe from '../assets/voices-cafe.webp'
 
 const VOICES = [
   {
@@ -105,6 +105,8 @@ export default function Voices() {
                         src={voice.img}
                         alt={voice.imgAlt}
                         className="aspect-[4/3] w-full border border-ink object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <figcaption className="mt-2.5 flex items-center gap-1.5 text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/45">
                         <AsteriskMark className="h-2 w-2 shrink-0 text-ember" />

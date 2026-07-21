@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
-import heroImg from '../assets/hero.png'
+import heroImg from '../assets/hero.webp'
 import AnimatedWords from '../components/AnimatedWords'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]

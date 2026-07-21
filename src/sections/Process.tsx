@@ -4,7 +4,7 @@ import AsteriskMark from '../components/AsteriskMark'
 import Eyebrow from '../components/Eyebrow'
 import ParallaxImage from '../components/ParallaxImage'
 import Reveal from '../components/Reveal'
-import processImg from '../assets/process-drum.png'
+import processImg from '../assets/process-drum.webp'
 
 const STEPS = [
   {

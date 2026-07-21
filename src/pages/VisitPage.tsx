@@ -4,9 +4,9 @@ import Eyebrow from '../components/Eyebrow'
 import Reveal from '../components/Reveal'
 import Footer from '../sections/Footer'
 import { Link } from '../router'
-import storyRoastery from '../assets/story-roastery.png'
-import processDrum from '../assets/process-drum.png'
-import voicesCafe from '../assets/voices-cafe.png'
+import storyRoastery from '../assets/story-roastery.webp'
+import processDrum from '../assets/process-drum.webp'
+import voicesCafe from '../assets/voices-cafe.webp'
 
 const HOURS = [
   { day: 'Monday', hours: 'Closed — green buying day' },
@@ -88,17 +88,17 @@ export default function VisitPage() {
         <div className="grid grid-cols-12 gap-4 px-4 pb-10 md:px-8 md:pb-16">
           <Reveal className="col-span-12 sm:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden">
-              <img src={storyRoastery} alt="The Ember roastery floor" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={storyRoastery} alt="The Ember roastery floor" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.1} className="col-span-6 sm:col-span-3 sm:mt-12">
             <div className="relative aspect-[3/4] overflow-hidden">
-              <img src={processDrum} alt="The roasting drum mid-batch" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={processDrum} alt="The roasting drum mid-batch" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.2} className="col-span-6 sm:col-span-4 sm:mt-6">
             <div className="relative aspect-[4/3] overflow-hidden">
-              <img src={voicesCafe} alt="The tasting bar at the front of the roastery" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={voicesCafe} alt="The tasting bar at the front of the roastery" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>

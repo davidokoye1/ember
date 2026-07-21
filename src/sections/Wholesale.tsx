@@ -4,7 +4,7 @@ import AsteriskMark from '../components/AsteriskMark'
 import Eyebrow from '../components/Eyebrow'
 import ParallaxImage from '../components/ParallaxImage'
 import Reveal from '../components/Reveal'
-import cafeImg from '../assets/wholesale-cafe.png'
+import cafeImg from '../assets/wholesale-cafe.webp'
 
 export default function Wholesale() {
   return (

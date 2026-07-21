@@ -6,7 +6,7 @@ import Reveal from '../components/Reveal'
 import Footer from '../sections/Footer'
 import { ROASTS } from '../data/roasts'
 import { Link } from '../router'
-import subPour from '../assets/sub-pour.png'
+import subPour from '../assets/sub-pour.webp'
 
 interface Guide {
   method: string
@@ -129,6 +129,8 @@ export default function BrewGuidesPage() {
                 <img
                   src={subPour}
                   alt="A slow pour over being brewed at the roastery bar"
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <span className="absolute bottom-4 left-4 bg-ink px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-paper">

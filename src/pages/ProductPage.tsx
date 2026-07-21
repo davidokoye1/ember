@@ -16,6 +16,8 @@ function OtherRoastCard({ roast }: { roast: Roast }) {
         <img
           src={roast.img}
           alt={roast.alt}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
       </div>
@@ -69,7 +71,7 @@ export default function ProductPage({ slug }: { slug: string }) {
         <div className="col-span-12 md:col-span-6 border-b md:border-b-0 md:border-r border-ink">
           <Reveal className="relative">
             <div className="relative aspect-[4/5] md:aspect-auto md:h-full md:min-h-[80vh] overflow-hidden">
-              <img src={roast.img} alt={roast.alt} className="absolute inset-0 h-full w-full object-cover" />
+              <img src={roast.img} alt={roast.alt} decoding="async" className="absolute inset-0 h-full w-full object-cover" />
               <span className="absolute left-4 top-4 bg-ink px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-paper">
                 {roast.level} roast — {roast.dropTemp}
               </span>

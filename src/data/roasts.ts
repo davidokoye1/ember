@@ -1,6 +1,6 @@
-import bagDawn from '../assets/bag-dawn.png'
-import bagEmber from '../assets/bag-ember.png'
-import bagChar from '../assets/bag-char.png'
+import bagDawn from '../assets/bag-dawn.webp'
+import bagEmber from '../assets/bag-ember.webp'
+import bagChar from '../assets/bag-char.webp'
 
 export interface Roast {
   slug: string

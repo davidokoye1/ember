@@ -23,6 +23,8 @@ export default function ParallaxImage({ src, alt }: ParallaxImageProps) {
       <motion.img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="absolute left-0 top-[-14%] h-[128%] w-full object-cover will-change-transform"
         style={reduceMotion ? undefined : { y }}
       />
